@@ -1,8 +1,10 @@
 import discord
+from keep_running import keep_running
 
 client = discord.Client()
 
-
+slangs = ["ass","asshole"]
+responding = True
 @client.event
 async def on_ready():
     print("Logged in as {0.user}".format(client))
@@ -20,9 +22,12 @@ async def on_message(message):
 
     if user_message.lower() == "hello" or user_message.lower() == "hi" or user_message.lower() == "hi bot" or user_message.lower() == "hello bot":
         await message.channel.send(f"Hello {username}. Great to see you again.")
-        
-    if user_message.lower() == "bye":
+
+    elif user_message.lower() == "bye":
         await message.channel.send(f"See you later {username}")
         
+    elif any(word in user_message for word in slangs) and username!="realRAJU":
+        await message.channel.send(f"01000110 01010101 01000011 01001011 01011001 01001111 01010101 00100001 {username}")
 
+keep_running()
 client.run('OTQ0MDk2MDcxMzc2ODYzMjQy.Yg8n-w.UARHySjvPsRVBODQw16ZBbiK8Yc')
